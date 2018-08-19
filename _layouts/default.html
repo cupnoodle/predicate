@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ '/assets/css/ie.css' | relative_url }}">
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
+    <link rel="shortcut icon" type="image/png" href="assets/image/favicon.png"/>
   </head>
   <body>
 
@@ -23,10 +23,10 @@
 
       <section>
         <div id="title">
-          <h1>{{ site.title | default: site.github.repository_name }}</h1>
+          <a href="/"><h1>{{ site.title | default: site.github.repository_name }}</h1></a>
           <p>{{ site.description | default: site.github.project_tagline }}</p>
           <hr>
-          <span class="credits left">Project maintained by <a href="https://fluffy.es">Fluffy.es</a></span>
+          <span class="credits left">Created by <a href="https://fluffy.es">Fluffy.es</a></span>
           <span class="credits right">Hosted on GitHub Pages</span>
         </div>
 
