@@ -139,7 +139,7 @@ let exclusivePredicate = NSPredicate(format: "NOT (item_id IN %@)", unwantedItem
 let containPredicate = NSPredicate(format: "name CONTAINS %@", "Kim")
 
 // Works for "Shop1", "shop 1", "my shop", "bishop"
-let containCaseInsensitivePredicate = NSPredicate(format: "name CONTAINS[c] %@", "Kim")
+let containCaseInsensitivePredicate = NSPredicate(format: "name CONTAINS[c] %@", "shop")
 // the [c] means case insensitive match
 ```
 
