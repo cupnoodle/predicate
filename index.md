@@ -12,6 +12,38 @@ Work in progress 🚧
 
 
 
+### Basic
+
+[Predicate Format and Arguments](#predicate-format-and-arguments)
+
+[String Format Specifier](#string-format-specifier)
+
+[Basic Comparison](#basic-comparison)
+
+[Compound Comparison](#compound-comparison)
+
+
+
+### Examples (Entity's property...)
+
+[Is included in an Array of values](#is-included-in-an-array-of-values)
+
+[Is not included in an Array of values](#is-not-included-in-an-array-of-values)
+
+
+
+[Begins with certain string](#begins-with-certain-string)
+
+[Contains certain string](#contains-certain-string)
+
+[Ends with certain string](#ends-with-certain-string)
+
+[Wildcard match with string](#wildcard-match-with-string)
+
+
+
+
+
 # Predicate Format and Arguments
 
 Say for a predicate which select Person that have a name "Asriel" and 50 money : 
