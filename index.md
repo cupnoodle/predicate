@@ -132,6 +132,20 @@ let exclusivePredicate = NSPredicate(format: "NOT (item_id IN %@)", unwantedItem
 
 
 
+# Property begins with certain string
+
+```swift
+// Works for "Macbook Pro", "Mac Mini"
+let beginPredicate = NSPredicate(format: "name BEGINSWITH %@", "Mac")
+
+// Works for "macintosh", "Macintosh"
+let beginCaseInsensitivePredicate = NSPredicate(format: "name BEGINSWITH[c] %@", "mac")
+// the [c] means case insensitive match
+```
+
+
+
+
 # Property contains certain string
 
 ```swift
@@ -140,6 +154,19 @@ let containPredicate = NSPredicate(format: "name CONTAINS %@", "Kim")
 
 // Works for "Shop1", "shop 1", "my shop", "bishop"
 let containCaseInsensitivePredicate = NSPredicate(format: "name CONTAINS[c] %@", "shop")
+// the [c] means case insensitive match
+```
+
+
+
+# Property ends with certain string
+
+```swift
+// Works for "Steve Jobs", "Lisa Jobs"
+let endPredicate = NSPredicate(format: "name ENDSWITH %@", "Jobs")
+
+// Works for "mundane jobs", "Steve Jobs"
+let endCaseInsensitivePredicate = NSPredicate(format: "name ENDSWITH[c] %@", "jobs")
 // the [c] means case insensitive match
 ```
 
