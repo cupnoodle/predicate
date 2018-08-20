@@ -26,9 +26,7 @@ Work in progress 🚧
 
 ### Techniques
 
-Using NSPredicate to filter array of structs / objects
-
-Reuse NSPredicate with substitution variable
+[Reuse NSPredicate with substitution variable](#reuse-nspredicate-with-substitution-variable)
 
 
 
@@ -51,8 +49,9 @@ Reuse NSPredicate with substitution variable
 [Regular Expression match with string](#regular-expression-match-with-string)
 
 
+# Basics
 
-# Predicate Format and Arguments
+## Predicate Format and Arguments
 
 Say for a predicate which select Person that have a name "Asriel" and 50 money : 
 
@@ -98,7 +97,7 @@ fetchRequest.predicate = NSPredicate(format: "name == %@", name)
 
 
 
-# String Format Specifier
+## String Format Specifier
 
 You can check the full list in [Apple official documentation](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Strings/Articles/formatSpecifiers.html). `%@` is used for objects like String, Date, Array etc.
 
@@ -118,7 +117,7 @@ let keyPathDatePredicate = NSPredicate(format: "%K < %@", "due_date", Date())
 
 
 
-# Basic Comparison
+## Basic Comparison
 
 Basic comparison symbol like `==`, `>` , `<` etc.
 
@@ -135,7 +134,7 @@ let lesserOrEqualPredicate = NSPredicate(format: "money <= %i", 10000)
 
 
 
-# Compound Comparison
+## Compound Comparison
 
 Join two or more condition together with `OR` , `AND`. 
 
@@ -148,9 +147,52 @@ let orPredicate = NSPredicate(format: "name == %@ OR money >= %i", "Steve Jobs",
 
 ```
 
+# Techniques
+
+## Reuse NSPredicate with substitution variable
+
+As it is relatively time consuming for the app to parse the format string of the NSPredicate, we should try to reduce creating multiple NSPredicate and reuse similar NSPredicate as much as possible. We can use variable value in NSPredicate denoted by `$` sign, and substitute its value by calling `withSubstitutionVariables` method.
+
+```swift
+// Persons' name : ["Asriel", "Asgore", "Toriel", "Frisk", "Flowey"]
+let context = appDelegate.persistentContainer.viewContext
+let fetchRequest = NSFetchRequest<Person>(entityName: "Person")
+
+let reusablePredicate = NSPredicate(format: "name BEGINSWITH $startingName")
+
+// replace $startingName with 'As'
+fetchRequest.predicate = reusablePredicate.withSubstitutionVariables(["startingName" : "As"])
+
+do {
+  people = try context.fetch(fetchRequest)
+  // ["Asriel", "Asgore"]
+} catch let error as NSError {
+  print("Could not fetch. \(error), \(error.userInfo)")
+}
+
+// reuse the predicate with a different starting name
+// replace $startingName with 'F'
+fetchRequest.predicate = reusablePredicate.withSubstitutionVariables(["startingName" : "F"])
+
+do {
+  people += try context.fetch(fetchRequest)
+  // ["Asriel", "Asgore", "Flowey", "Frisk"]
+} catch let error as NSError {
+  print("Could not fetch. \(error), \(error.userInfo)")
+}
+```
 
 
-# Is included in an Array of values
+
+You can use multiple variables like `name BEGINSWITH $startingName AND money >  $amount` , then call `withSubstitutionVariables(["startingName" : "As", "amount": 50])`.
+
+
+
+
+
+# Examples
+
+## Is included in an Array of values
 
 ```swift
 let wantedItemIDs = [1, 2, 3, 5, 8, 13, 21]
@@ -161,7 +203,7 @@ let inclusivePredicate = NSPredicate(format: "item_id IN %@", wantedItemIDs)
 
 
 
-# Is not included in an Array of values
+## Is not included in an Array of values
 
 ```swift
 let unwantedItemIDs = [1, 2, 3, 5, 8, 13, 21]
@@ -172,7 +214,7 @@ let exclusivePredicate = NSPredicate(format: "NOT (item_id IN %@)", unwantedItem
 
 
 
-# Begins with certain string
+## Begins with certain string
 
 ```swift
 // Works for "Kim Jong Un", "Kim Kardashian"
@@ -186,7 +228,7 @@ let beginCaseInsensitivePredicate = NSPredicate(format: "name BEGINSWITH[c] %@",
 
 
 
-# Contains certain string
+## Contains certain string
 
 ```swift
 // Works for "Steven Paul Jobs", "Logan Paul"
@@ -199,7 +241,7 @@ let containCaseInsensitivePredicate = NSPredicate(format: "name CONTAINS[c] %@",
 
 
 
-# Ends with certain string
+## Ends with certain string
 
 ```swift
 // Works for "Steve Jobs", "Lisa Jobs"
@@ -212,7 +254,7 @@ let endCaseInsensitivePredicate = NSPredicate(format: "name ENDSWITH[c] %@", "jo
 
 
 
-# Wildcard match with string
+## Wildcard match with string
 
 `LIKE` is used for wildcard match.
 
@@ -250,7 +292,7 @@ print(imageArr2)
 
 
 
-# Regular Expression match with string
+## Regular Expression match with string
 
 `MATCHES` is used for regular expression match.
 
