@@ -4,7 +4,7 @@ layout: default
 
 # NSPredicate
 
-This page contains usage examples of NSPredicate, [check here for Core Data usage examples](coredata)
+This page contains usage examples of NSPredicate, [check here for Core Data usage examples](coredata) 🔋
 
 # Table of Contents
 
