@@ -3,7 +3,7 @@ layout: default
 ---
 
 # Core Data
-This page contain usage examples of common Core Data actions.
+This page contain usage examples of common Core Data actions, [check here for NSPredicate usage examples](/) 💬
 
 
 # Table of Contents
