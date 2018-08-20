@@ -28,6 +28,8 @@ Work in progress 🚧
 
 Using NSPredicate to filter array of structs / objects
 
+Reuse NSPredicate with substitution variable
+
 
 
 ### Examples (Entity's property...)
