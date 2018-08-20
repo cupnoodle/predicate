@@ -110,7 +110,7 @@ let orPredicate = NSPredicate(format: "name == %@ OR money >= %i", "Steve Jobs",
 
 
 
-# Property is included in an Array of values
+# Is included in an Array of values
 
 ```swift
 let wantedItemIDs = [1, 2, 3, 5, 8, 13, 21]
@@ -121,7 +121,7 @@ let inclusivePredicate = NSPredicate(format: "item_id IN %@", wantedItemIDs)
 
 
 
-# Property is not included in an Array of values
+# Is not included in an Array of values
 
 ```swift
 let unwantedItemIDs = [1, 2, 3, 5, 8, 13, 21]
@@ -132,7 +132,7 @@ let exclusivePredicate = NSPredicate(format: "NOT (item_id IN %@)", unwantedItem
 
 
 
-# Property begins with certain string
+# Begins with certain string
 
 ```swift
 // Works for "Kim Jong Un", "Kim Kardashian"
@@ -146,7 +146,7 @@ let beginCaseInsensitivePredicate = NSPredicate(format: "name BEGINSWITH[c] %@",
 
 
 
-# Property contains certain string
+# Contains certain string
 
 ```swift
 // Works for "Steven Paul Jobs", "Logan Paul"
@@ -159,7 +159,7 @@ let containCaseInsensitivePredicate = NSPredicate(format: "name CONTAINS[c] %@",
 
 
 
-# Property ends with certain string
+# Ends with certain string
 
 ```swift
 // Works for "Steve Jobs", "Lisa Jobs"
@@ -171,4 +171,40 @@ let endCaseInsensitivePredicate = NSPredicate(format: "name ENDSWITH[c] %@", "jo
 ```
 
 
+
+# Wildcard match with string
+
+`LIKE` is used for wildcard match.
+
+
+
+Wildcard match is used to match certain pattern of string, eg: to match `img1.png` , `img10.png` and`img100.png`, we can use `filename LIKE 'img*.png'`. The `*` means **zero or more characters** between `img` and `.png` is accepted.
+
+```swift
+let filenameArr = ["img.png", "img1.png", "img2.png", "img10.png", "img100.png", "img200.txt", "img300.csv"]
+
+let pngPredicate = NSPredicate(format: "SELF LIKE %@", "img*.png")
+
+let imageArr = filenameArr.filter(){ filename in
+	pngPredicate.evaluate(with: filename)
+}
+print(imageArr)
+// ["img.png", "img1.png", "img2.png", "img10.png", "img100.png"]
+```
+
+
+
+To match **exactly one character**, we can use `?` , eg: `filename LIKE 'img?.png'` will match `img1.png` but not `img10.png` as it only take in one character between `img` and `.png`.
+
+```swift
+let filenameArr = ["img.png", "img1.png", "img2.png", "img10.png", "img100.png", "img200.txt", "img300.csv"]
+
+let singleCharPngPredicate = NSPredicate(format: "SELF LIKE %@", "img?.png")
+
+let imageArr2 = filenameArr.filter(){ filename in
+	singleCharPngPredicate.evaluate(with: filename)
+}
+print(imageArr2)
+// ["img1.png", "img2.png"]
+```
 
