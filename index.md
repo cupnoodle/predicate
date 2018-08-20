@@ -24,6 +24,12 @@ Work in progress 🚧
 
 
 
+### Techniques
+
+Using NSPredicate to filter array of structs / objects
+
+
+
 ### Examples (Entity's property...)
 
 [Is included in an Array of values](#is-included-in-an-array-of-values)
@@ -40,7 +46,7 @@ Work in progress 🚧
 
 [Wildcard match with string](#wildcard-match-with-string)
 
-
+[Regular Expression match with string](#regular-expression-match-with-string)
 
 
 
@@ -238,5 +244,33 @@ let imageArr2 = filenameArr.filter(){ filename in
 }
 print(imageArr2)
 // ["img1.png", "img2.png"]
+```
+
+
+
+# Regular Expression match with string
+
+`MATCHES` is used for regular expression match.
+
+
+
+Regular expression is used for complex string pattern matching. Swift uses [ICU regular expression format](http://userguide.icu-project.org/strings/regexp).
+For learning regular expression, I recommend [this tutorial](https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285).
+
+
+
+Eg: `filename MATCHES 'img\\d{1,3}\\.png'` will match filename with 1-3 digits between `img` and `.png` like `img1.png`, `img10.png` and `img100.png` but not `img1000.png` .  Double backslash is used to escape the backslash character `\` .
+
+```swift
+let filenameArr = ["img.png", "img1.png", "imgABC.png", "img10.png", "img100.png", "img9000.png", "img12345.png"]
+
+// matches filename that has 1-3 digits between 'img' and '.png'
+let regexPredicate = NSPredicate(format: "SELF MATCHES %@", "img\\d{1,3}\\.png")
+
+let filteredArr = filenameArr.filter(){ filename in
+    regexPredicate.evaluate(with: filename)
+}
+print(filteredArr)
+// ["img1.png", "img10.png", "img100.png"]
 ```
 
