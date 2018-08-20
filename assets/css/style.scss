@@ -34,6 +34,12 @@ blockquote p {
   font-weight: 300;
 }
 
+@media print, screen and (max-width: 720px) {
+  #title .credits {
+    margin-bottom: 0.25em;
+  }
+}
+
 /* override default syntax highlight theme */
 .highlight .hll { background-color: #373b41 }
 .highlight  { background: #1d1f21; color: #c5c8c6 }
