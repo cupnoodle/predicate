@@ -19,6 +19,8 @@ This page contains usage examples of NSPredicate, [check here for Core Data usag
 
 [Compound Comparison](#compound-comparison)
 
+[Case insensitive Comparison](#case-insensitive-comparison)
+
 
 
 ### Techniques
@@ -56,7 +58,7 @@ This page contains usage examples of NSPredicate, [check here for Core Data usag
       Try out NSPredicate / Core Data yourself!
     </span>
   </div>
-        
+
   <div class="post-subscribe-right">
     <form action="https://www.getdrip.com/forms/87161541/submissions" method="post" data-drip-embedded-form="87161541">
       <div style="margin-bottom: 0.5rem;">
@@ -174,6 +176,18 @@ let andPredicate = NSPredicate(format: "name == %@ AND money >= %i", "Steve Jobs
 let orPredicate = NSPredicate(format: "name == %@ OR money >= %i", "Steve Jobs", 10000)
 
 ```
+
+
+## Case insensitive Comparison
+
+For case insensitive comparison, put `[c]` after the comparison symbol.
+
+```swift
+// Works for "jobs", "Jobs", "jObS"
+let caseInsensitivePredicate = NSPredicate(format: "name ==[c] %@", "Jobs")
+```
+
+
 
 # Techniques
 
