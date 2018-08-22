@@ -44,6 +44,84 @@ blockquote p {
   }
 }
 
+/* subscribe box */
+.post-subscribe{
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px;
+
+  border: 1px solid #CCC;
+  text-align: left;
+  border-radius: 4px;
+
+  background-color: #1d1f21;
+  border: 1px solid #121212;
+
+  box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+}
+
+.post-subscribe h4{
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+.post-subscribe img{
+  max-width: 200px;
+  max-height: 200px;
+  display: block;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-subscribe span{
+  display: inline;
+}
+
+.post-subscribe-left, .post-subscribe-right{
+  display: inline-table;
+  width: 42%;
+  height: 100%;
+  padding: 1rem;
+}
+
+@media (max-width: 450px) {
+  .post-subscribe-left, .post-subscribe-right{
+    width: 87%;
+  }
+}
+
+.post-subscribe input[type=text],.post-subscribe input[type=email]{
+  font-size: 1rem;
+  padding:0.4rem; 
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #999;
+}
+
+.post-subscribe input[type="submit"]{
+  font-size: 1rem;
+  padding:0.5rem ; 
+  background-color: #208bfa; 
+  color: #f9f9f9;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; 
+  width: 100%;
+
+  border: 0;
+
+  text-shadow: 0px 1px #333;
+}
+
+.post-subscribe input[type="submit"]:hover{
+/*  background-color: #4BC948;
+  color: #F9F9F9; */
+}
+
 /* override default syntax highlight theme */
 .highlight .hll { background-color: #373b41 }
 .highlight  { background: #1d1f21; color: #c5c8c6 }
