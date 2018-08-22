@@ -37,7 +37,36 @@ This page contain usage examples of common Core Data actions, [check here for NS
 [Insert new record](#insert-new-record)
 
 
-
+<div class="post-subscribe">
+  <div class="post-subscribe-left">
+    <h4> Get demo Xcode project with Core Data / NSPredicate sample code</h4>
+    <p> 
+      <img src="https://iosimage.s3.amazonaws.com/xproj.png" style="max-width: 100px;">
+    </p>
+    <span>
+      Try out NSPredicate / Core Data yourself!
+    </span>
+  </div>
+        
+  <div class="post-subscribe-right">
+    <form action="https://www.getdrip.com/forms/87161541/submissions" method="post" data-drip-embedded-form="87161541">
+      <div style="margin-bottom: 0.5rem;">
+          <label for="drip-firstname">Name<span style="color:#952B45;">*</span></label><br>
+          <input type="text" id="drip-firstname" name="fields[firstname]" value="">
+      </div>
+      <div>
+          <label for="drip-email">Email Address<span style="color:#952B45;">*</span></label><br>
+          <input type="email" id="drip-email" name="fields[email]" value="">
+      </div>
+      <div style="width:100%;">
+        <br>
+        <input type="submit" value="Send me the project file!" data-drip-attribute="sign-up-button">
+        <br><br>
+        <span style="font-size: 0.8rem;">+ Weekly-ish iOS Development tips to help you become a better iOS developer.<br> No Spam. Unsubscribe any time.</span>
+      </div>
+    </form>
+  </div>
+</div>
 
 
 # Quick Start
