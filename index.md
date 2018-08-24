@@ -29,6 +29,8 @@ This page contains usage examples of NSPredicate, [check here for Core Data usag
 
 [Reuse NSPredicate with substitution variable](#reuse-nspredicate-with-substitution-variable)
 
+[Using NSPredicate to filter Array of objects](#using-nspredicate-to-filter-array-of-objects)
+
 
 
 ### Examples (Entity's property...)
@@ -199,6 +201,30 @@ do {
 
 
 You can use multiple variables like `name BEGINSWITH $startingName AND money >  $amount` , then call `withSubstitutionVariables(["startingName" : "As", "amount": 50])`.
+
+
+
+## Using NSPredicate to filter Array of objects
+
+Other than Core Data, we can also use NSPredicate to filter array of objects. The `SELF` in the format string means each individual element in the array. 
+
+```swift
+let names = ["Kim Kardashian", "Kim Jong Un", "Jimmy Kimmel", "Ken"]
+
+var filteredNames : [String] = []
+
+// SELF means each element in the array
+let containPredicate = NSPredicate(format: "SELF CONTAINS %@", "Kim")
+
+filteredNames = names.filter({ name in
+    // the evaluate function will return true if the element satisfy the predicate, 
+    // otherwise false
+	containPredicate.evaluate(with: name)
+})
+
+print("\(filteredNames)")
+// ["Kim Kardashian", "Kim Jong Un", "Jimmy Kimmel"]
+```
 
 
 
